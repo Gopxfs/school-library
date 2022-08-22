@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require './person'
 # Teacher's information/actions in the library.
 class Teacher < Person

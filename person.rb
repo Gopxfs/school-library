@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Person's information/actions in the library.
 class Person
   attr_reader :id
