@@ -1,10 +1,8 @@
 require './person'
 # Students' information/actions in the library.
 class Student < Person
-  attr_reader :classroom
-
-  def initialize(age, classroom, name = "Unknown", parent_permission: true)
-    super (age, name, parent_permission: parent_permission)
+  def initialize(age, classroom, name = 'Unknown')
+    super(age, name)
     @classroom = classroom
   end
 
