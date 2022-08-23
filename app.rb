@@ -1,6 +1,6 @@
 class App
   def initialize
-    @options = ["Error", list_books, list_people, create_person, create_book, create_rental, list_rental]
+    @options = ["Error", list_books, list_people, add_person, add_book, add_rental, list_rental]
   end
 
   def run(option)
@@ -23,15 +23,15 @@ class App
     "list_people"
   end
 
-  def create_person
+  def add_person
     "create_person"
   end
 
-  def create_book
+  def add_book
     "create_book"
   end
 
-  def create_rental
+  def add_rental
     "create_rental"
   end
 
@@ -44,9 +44,9 @@ def main
   print "
 [1] List all books
 [2] List all people
-[3] Create a person
-[4] Create a book
-[5] Create a rental
+[3] Add a person
+[4] Add a book
+[5] Add a rental
 [6] List all rentals for a given person id
 [7] Exit
 
