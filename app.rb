@@ -1,6 +1,6 @@
 class App
   def run(option)
-    case option.to_i
+    case option
     when 1
       list_books
     when 2
@@ -58,12 +58,12 @@ Select an option by typing its number
   if (1..7).include?(option)
     app = App.new
     app.run(option)
+    puts 'Exiting...'
   else
     puts "Sorry, this option doesn't exist.\n"
     sleep(0.8)
     main
   end
-  puts 'Exiting...'
 end
 
 main
