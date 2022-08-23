@@ -1,7 +1,11 @@
-require './add_student'
-require './add_teacher'
+require "./methods/create_person"
 
 class App
+  def initialize
+    @students = []
+    @teachers = []
+  end
+
   def display_options
     print "[1] List all books
 [2] List all people
@@ -49,7 +53,11 @@ Select an option by typing its number\n"
   end
 
   def list_people
-    puts 'list_people'
+    puts 'Teachers:'
+    @teachers.each { |teacher| puts "Name: #{teacher.name}, Age: #{teacher.age}, ID: #{teacher.id}" }
+    puts 'Students:'
+    @students.each { |student| puts "Name: #{student.name}, Age: #{student.age}, ID: #{student.id}" }
+    puts
   end
 
   def add_person
@@ -59,9 +67,9 @@ Select an option by typing its number\n"
     when 0
       nil
     when 1
-      add_student #imported
+      @students.push(create_person("Student")) #imported 
     when 2
-      add_teacher #imported
+      @teachers.push(create_person("Teacher")) #imported 
     else
       puts 'Please insert a valid option or [0] to return.'
       sleep(0.8)
