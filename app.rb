@@ -1,6 +1,6 @@
-require "./methods/create_person"
-require "./methods/create_book"
-require "./methods/create_rental"
+require './methods/create_person'
+require './methods/create_book'
+require './methods/create_rental'
 
 class App
   def initialize
@@ -54,7 +54,7 @@ Select an option by typing its number: "
 
   def list_books
     puts 'Booklist: '
-    @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}"}
+    @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
   end
 
   def list_people
@@ -71,9 +71,9 @@ Select an option by typing its number: "
     when 0
       nil
     when 1
-      @students.push(create_person("Student")) #imported 
+      @students.push(create_person('Student')) # imported
     when 2
-      @teachers.push(create_person("Teacher")) #imported 
+      @teachers.push(create_person('Teacher')) # imported
     else
       puts 'Please insert a valid option or [0] to return.'
       sleep(0.8)
@@ -88,12 +88,14 @@ Select an option by typing its number: "
   def add_rental
     if @books[0]
       puts 'Select a book from the following list by its number:'
-      @books.each { |book| puts "[#{@books.index(book)}] Title: #{book.title}, Author: #{book.author}"}
+      @books.each { |book| puts "[#{@books.index(book)}] Title: #{book.title}, Author: #{book.author}" }
       book = gets.chomp.to_i
       if @students[0] || @teachers[0]
         puts 'Select a person from the following list by number.'
         people = @teachers + @students
-        people.each { |person| puts "[#{people.index(person)}] Name: #{person.name}, Age: #{person.age}, ID: #{person.id}"}
+        people.each do |person|
+          puts "[#{people.index(person)}] Name: #{person.name}, Age: #{person.age}, ID: #{person.id}"
+        end
         person = gets.chomp.to_i
         create_rental(@books[book], people[person])
       else
@@ -106,9 +108,7 @@ Select an option by typing its number: "
     end
   end
 
-  def list_rental
-    
-  end
+  def list_rental; end
 end
 
 app = App.new

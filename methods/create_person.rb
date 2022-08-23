@@ -7,16 +7,16 @@ def create_person(option)
   print 'Name: '
   name = gets.chomp
 
-  if option == "Student"
+  if option == 'Student'
     print 'Has parent permission? [Y/N]: '
     parent_permission = gets.chomp
     person = Student.new(age, name, parent_permission: parent_permission)
   else
     print 'Specialization: '
     specialization = gets.chomp
-    person = Teacher.new(age, specialization ,name)
+    person = Teacher.new(age, specialization, name)
   end
   puts "#{option} created successfully!"
   sleep(0.8)
-  return person
+  person
 end
