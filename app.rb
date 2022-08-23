@@ -1,9 +1,11 @@
 require "./methods/create_person"
+require "./methods/create_book"
 
 class App
   def initialize
     @students = []
     @teachers = []
+    @books = []
   end
 
   def display_options
@@ -49,7 +51,9 @@ Select an option by typing its number\n"
   end
 
   def list_books
-    puts 'list_books'
+    puts 'Booklist: '
+    @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}"}
+    puts
   end
 
   def list_people
@@ -78,7 +82,7 @@ Select an option by typing its number\n"
   end
 
   def add_book
-    puts 'create_book'
+    @books.push(create_book)
   end
 
   def add_rental
