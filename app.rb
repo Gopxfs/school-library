@@ -1,5 +1,6 @@
 require "./methods/create_person"
 require "./methods/create_book"
+require "./methods/create_rental"
 
 class App
   def initialize
@@ -9,7 +10,8 @@ class App
   end
 
   def display_options
-    print "[1] List all books
+    print "
+[1] List all books
 [2] List all people
 [3] Add a person
 [4] Add a book
@@ -53,7 +55,6 @@ Select an option by typing its number\n"
   def list_books
     puts 'Booklist: '
     @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}"}
-    puts
   end
 
   def list_people
@@ -61,7 +62,6 @@ Select an option by typing its number\n"
     @teachers.each { |teacher| puts "Name: #{teacher.name}, Age: #{teacher.age}, ID: #{teacher.id}" }
     puts 'Students:'
     @students.each { |student| puts "Name: #{student.name}, Age: #{student.age}, ID: #{student.id}" }
-    puts
   end
 
   def add_person
@@ -86,7 +86,15 @@ Select an option by typing its number\n"
   end
 
   def add_rental
-    puts 'create_rental'
+    if @books[0]
+      puts 'Select a book from the following list by its number:'
+      @books.each { |book| puts "[#{@books.index(book)}] Title: #{book.title}, Author: #{book.author}"}
+      option = gets.chomp.to_i
+      create_rental(@books[option])
+    else
+      puts 'The booklist is currently empty.'
+      sleep(0.8)
+    end
   end
 
   def list_rental
