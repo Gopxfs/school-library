@@ -1,3 +1,6 @@
+require './add_student'
+require './add_teacher'
+
 class App
   def display_options
     print "[1] List all books
@@ -56,22 +59,14 @@ Select an option by typing its number\n"
     when 0
       nil
     when 1
-      add_student
+      add_student #imported
     when 2
-      add_teacher
+      add_teacher #imported
     else
       puts 'Please insert a valid option or [0] to return.'
       sleep(0.8)
       add_person
     end
-  end
-
-  def add_student
-    puts 'added student'
-  end
-
-  def add_teacher
-    puts 'added teacher'
   end
 
   def add_book
