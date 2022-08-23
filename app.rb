@@ -1,4 +1,29 @@
 class App
+  def display_options
+    print "[1] List all books
+[2] List all people
+[3] Add a person
+[4] Add a book
+[5] Add a rental
+[6] List all rentals for a given person id
+[7] Exit\n
+Select an option by typing its number\n"
+  end
+
+  def main
+    loop do
+      display_options
+      option = gets.chomp.to_i
+      if (1..7).include?(option)
+        run(option)
+      else
+        puts "Sorry, this option doesn't exist.\n"
+        sleep(0.8)
+      end
+      break if option == 7
+    end
+  end
+
   def run(option)
     case option
     when 1
@@ -25,9 +50,28 @@ class App
   end
 
   def add_person
-    puts 'Do you want to add a student[1] or a teacher[2]? (Input the number)'
-    option = gets.chomp
-    puts option.to_s
+    print 'Do you want to add a student[1] or a teacher[2]? (Input the number): '
+    option = gets.chomp.to_i
+    case option
+    when 0
+      nil
+    when 1
+      add_student
+    when 2
+      add_teacher
+    else
+      puts 'Please insert a valid option or [0] to return.'
+      sleep(0.8)
+      add_person
+    end
+  end
+
+  def add_student
+    puts 'added student'
+  end
+
+  def add_teacher
+    puts 'added teacher'
   end
 
   def add_book
@@ -43,27 +87,5 @@ class App
   end
 end
 
-def main
-  print "
-[1] List all books
-[2] List all people
-[3] Add a person
-[4] Add a book
-[5] Add a rental
-[6] List all rentals for a given person id
-[7] Exit\n
-Select an option by typing its number
-"
-  option = gets.chomp.to_i
-  if (1..7).include?(option)
-    app = App.new
-    app.run(option)
-    puts 'Exiting...'
-  else
-    puts "Sorry, this option doesn't exist.\n"
-    sleep(0.8)
-    main
-  end
-end
-
-main
+app = App.new
+app.main
