@@ -6,6 +6,7 @@ def create_book
   print 'Author: '
   author = gets.chomp
   book = Book.new(title, author)
-  puts "Book created successfully!\n"
+  puts "Book created successfully!"
+  sleep(0.8)
   return book
 end
