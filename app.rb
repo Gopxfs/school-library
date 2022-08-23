@@ -1,7 +1,13 @@
 class App
+  
+  def initialize
+    @options = ["Error", "b"]
+  end
+
   def run(option)
-    if (1..7) === option.to_i
-      puts option
+    option = option.to_i
+    if (1..7) === option
+      puts @options[option]
     else
       puts "Sorry, this options doesn't exist.\n"
       sleep(0.8)
