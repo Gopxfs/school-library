@@ -5,11 +5,7 @@ class Classroom
     @label = label
     @students = []
   end
-
-  def printSelf
-    self
-  end
-
+  
   def add_student(student)
     @students.push(student)
     student.classroom = self
