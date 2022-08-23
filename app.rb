@@ -18,7 +18,7 @@ class App
 [5] Add a rental
 [6] List all rentals for a given person id
 [7] Exit\n
-Select an option by typing its number\n"
+Select an option by typing its number: "
   end
 
   def main
@@ -58,9 +58,9 @@ Select an option by typing its number\n"
   end
 
   def list_people
-    puts 'Teachers:'
+    puts 'Teachers'
     @teachers.each { |teacher| puts "Name: #{teacher.name}, Age: #{teacher.age}, ID: #{teacher.id}" }
-    puts 'Students:'
+    puts 'Students'
     @students.each { |student| puts "Name: #{student.name}, Age: #{student.age}, ID: #{student.id}" }
   end
 
@@ -89,8 +89,17 @@ Select an option by typing its number\n"
     if @books[0]
       puts 'Select a book from the following list by its number:'
       @books.each { |book| puts "[#{@books.index(book)}] Title: #{book.title}, Author: #{book.author}"}
-      option = gets.chomp.to_i
-      create_rental(@books[option])
+      book = gets.chomp.to_i
+      if @students[0] || @teachers[0]
+        puts 'Select a person from the following list by number.'
+        people = @teachers + @students
+        people.each { |person| puts "[#{people.index(person)}] Name: #{person.name}, Age: #{person.age}, ID: #{person.id}"}
+        person = gets.chomp.to_i
+        create_rental(@books[book], people[person])
+      else
+        puts 'There is no one to rent this book.'
+        sleep(0.8)
+      end
     else
       puts 'The booklist is currently empty.'
       sleep(0.8)
@@ -98,7 +107,7 @@ Select an option by typing its number\n"
   end
 
   def list_rental
-    puts 'list_rental'
+    
   end
 end
 
