@@ -1,13 +1,23 @@
 class App
-  def initialize
-    @options = ["Error", list_books, list_people, add_person, add_book, add_rental, list_rental]
-  end
-
   def run(option)
     option = option.to_i
 
-    if (1..7) === option
-      puts @options[option]
+    case option
+    when 1
+      list_books
+    when 2
+      list_people
+    when 3
+      add_person
+    when 4
+      add_book
+    when 5
+      add_rental
+    when 6
+      list_rental
+    when 7
+      puts "Exiting..."
+
     else
       puts "Sorry, this option doesn't exist.\n"
       sleep(0.8)
@@ -16,27 +26,29 @@ class App
   end
   
   def list_books
-    "list_books"
+    puts "list_books"
   end
 
   def list_people
-    "list_people"
+    puts "list_people"
   end
 
   def add_person
-    "create_person"
+    puts "Do you want to add a student[1] or a teacher[2]? (Input the number)"
+    option = gets.chomp
+    puts "#{option}"
   end
 
   def add_book
-    "create_book"
+    puts "create_book"
   end
 
   def add_rental
-    "create_rental"
+    puts "create_rental"
   end
 
   def list_rental
-    "list_rental"
+    puts "list_rental"
   end
 end
 
