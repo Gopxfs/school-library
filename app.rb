@@ -1,6 +1,13 @@
 class App
-  def run
-    puts 'Start of file!'
+  def run(option)
+    if (1..7) === option.to_i
+      puts option
+    else
+      puts "Sorry, this options doesn't exist.\n"
+      sleep(0.8)
+      main
+    end
+
   end
 end
 
@@ -14,8 +21,9 @@ def main
 6 - List all rentals for a given person id
 7 - Exit
 "
+option = gets.chomp
   app = App.new
-  app.run
+  app.run(option)
 end
 
 main
