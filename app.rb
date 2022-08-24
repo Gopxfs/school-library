@@ -66,7 +66,7 @@ Select an option by typing its number: "
   end
 
   def add_person
-    print 'Do you want to add a student[1] or a teacher[2]? (Input the number): '
+    print 'Do you want to add a student[1], a teacher[2] or return [0]? (Input the number): '
     option = gets.chomp.to_i
     case option
     when 0
@@ -76,7 +76,7 @@ Select an option by typing its number: "
     when 2
       @teachers.push(create_person('Teacher')) # imported
     else
-      puts 'Please insert a valid option or [0] to return.'
+      puts 'Please insert a valid option.'
       sleep(0.8)
       add_person
     end
