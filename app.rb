@@ -33,7 +33,7 @@ Select an option by typing its number: "
       end
       break if option == 7
     end
-    puts "Exiting..."
+    puts 'Exiting...'
   end
 
   def run(option)
@@ -115,16 +115,18 @@ Select an option by typing its number: "
     id_doesnt_exist = true
     people = @teachers + @students
     people.each do |person|
-      if person.id == id
-        person.rentals.each {|rental| puts "Date: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}"}
-        id_doesnt_exist = false
-        break
+      next unless person.id == id
+
+      person.rentals.each do |rental|
+        puts "Date: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}"
       end
+      id_doesnt_exist = false
+      break
     end
-    if id_doesnt_exist
-      puts "This ID doesn't exist."
-      sleep(0.8)
-    end 
+    return unless id_doesnt_exist
+
+    puts "This ID doesn't exist."
+    sleep(0.8)
   end
 end
 
