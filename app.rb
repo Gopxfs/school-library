@@ -33,6 +33,7 @@ Select an option by typing its number: "
       end
       break if option == 7
     end
+    puts "Exiting..."
   end
 
   def run(option)
@@ -82,7 +83,7 @@ Select an option by typing its number: "
   end
 
   def add_book
-    @books.push(create_book)
+    @books.push(create_book) # imported
   end
 
   def add_rental
@@ -97,7 +98,7 @@ Select an option by typing its number: "
           puts "[#{people.index(person)}] Name: #{person.name}, Age: #{person.age}, ID: #{person.id}"
         end
         person = gets.chomp.to_i
-        create_rental(@books[book], people[person])
+        create_rental(@books[book], people[person]) # imported
       else
         puts 'There is no one to rent this book.'
         sleep(0.8)
@@ -108,7 +109,23 @@ Select an option by typing its number: "
     end
   end
 
-  def list_rental; end
+  def list_rental
+    print "Insert the person's ID: "
+    id = gets.chomp.to_i
+    id_doesnt_exist = true
+    people = @teachers + @students
+    people.each do |person|
+      if person.id == id
+        person.rentals.each {|rental| puts "Date: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}"}
+        id_doesnt_exist = false
+        break
+      end
+    end
+    if id_doesnt_exist
+      puts "This ID doesn't exist."
+      sleep(0.8)
+    end 
+  end
 end
 
 app = App.new
