@@ -25,7 +25,7 @@ Select an option by typing its number: "
     loop do
       display_options
       option = gets.chomp.to_i
-      if (1..7).include?(option)
+      if (1..6).include?(option)
         run(option)
       else
         puts "Sorry, this option doesn't exist.\n"
