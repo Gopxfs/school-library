@@ -25,7 +25,7 @@ def load_books
 
   unless booksData.empty?
     booksData.each do |book|
-      books.push(Book.new(book.title, book.author))
+      books.push(Book.new(book["title"], book["author"]))
     end
   end
 
@@ -39,11 +39,11 @@ def load_teachers
     return teachers
   end
 
-  teachersData JSON.parse(File.read('./data/teachers.json'))
+  teachersData = JSON.parse(File.read('./data/teachers.json'))
 
   unless teachersData.empty?
     teachersData.each do |teacher|
-      teachers.push(Teacher.new(teacher.age, teacher.specialization, teacher.name, parent_permission: teacher.parent_permission))
+      teachers.push(Teacher.new(teacher["age"], teacher["specialization"], teacher["name"], teacher["id"], parent_permission: teacher["parent_permission"]))
     end
   end
 
@@ -57,11 +57,11 @@ def load_students
     return students
   end
 
-  studentsData JSON.parse(File.read('./data/students.json'))
+  studentsData = JSON.parse(File.read('./data/students.json'))
 
   unless studentsData.empty?
-    studentsData.each do |teacher|
-      students.push(Student.new(student.age, student.name, student.classroom, parent_permission: student.parent_permission))
+    studentsData.each do |student|
+      students.push(Student.new(student["age"], student["name"], student["classroom"], student["id"], parent_permission: student["parent_permission"]))
     end
   end
 
