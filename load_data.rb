@@ -16,6 +16,11 @@ end
 
 def load_books
   books = []
+
+  if File.read('./data/books.json').empty?
+    return books
+  end
+
   booksData = JSON.parse(File.read('./data/books.json'))
 
   unless booksData.empty?
@@ -29,6 +34,11 @@ end
 
 def load_teachers
   teachers = []
+
+  if File.read('./data/teachers.json').empty?
+    return teachers
+  end
+
   teachersData JSON.parse(File.read('./data/teachers.json'))
 
   unless teachersData.empty?
@@ -42,6 +52,11 @@ end
 
 def load_students
   students = []
+
+  if File.read('./data/students.json').empty?
+    return students
+  end
+
   studentsData JSON.parse(File.read('./data/students.json'))
 
   unless studentsData.empty?
