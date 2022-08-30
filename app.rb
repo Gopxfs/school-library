@@ -1,12 +1,14 @@
 require './methods/create_person'
 require './methods/create_book'
 require './methods/create_rental'
+require './load_data'
+require './save_data'
 
 class App
   def initialize
+    @books = []
     @students = []
     @teachers = []
-    @books = []
   end
 
   def display_options
@@ -22,6 +24,8 @@ Select an option by typing its number: "
   end
 
   def main
+    @books, @students, @teachers = load_data
+
     loop do
       display_options
       option = gets.chomp.to_i
@@ -33,6 +37,8 @@ Select an option by typing its number: "
       end
       break if option == 7
     end
+
+    save_data(@books, @students, @teachers)
     puts 'Exiting...'
   end
 
