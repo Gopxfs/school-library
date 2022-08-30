@@ -37,7 +37,7 @@ Select an option by typing its number: "
       end
       break if option == 7
     end
-    
+
     save_data(@books, @students, @teachers)
     puts 'Exiting...'
   end
