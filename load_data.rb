@@ -11,13 +11,13 @@ def load_data
   
   create_rentals(books, students, teachers)
   puts "Data loaded successfully!"
-  return books, students, teachers
+  return [books, students, teachers]
 end
 
 def load_books
   books = []
 
-  if File.read('./data/books.json').empty?
+  unless File.exist?('./data/books.json')
     return books
   end
 
@@ -35,7 +35,7 @@ end
 def load_teachers
   teachers = []
 
-  if File.read('./data/teachers.json').empty?
+  unless File.exist?('./data/teachers.json')
     return teachers
   end
 
@@ -53,7 +53,7 @@ end
 def load_students
   students = []
 
-  if File.read('./data/students.json').empty?
+  unless File.exist?('./data/students.json')
     return students
   end
 
