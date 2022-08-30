@@ -45,7 +45,7 @@ def save_teachers(teachers)
   teachersData = []
 
   teachers.each do |teacher|
-    teachers.push({      
+    teachersData.push({      
       name: teacher.name,
       age: teacher.age,
       specialization: teacher.specialization,
