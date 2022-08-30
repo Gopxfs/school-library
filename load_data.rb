@@ -2,6 +2,7 @@ require './book'
 require './teacher'
 require './student'
 require './rental'
+require 'json'
 
 def load_data
   books = load_books
