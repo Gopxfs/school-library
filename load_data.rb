@@ -8,41 +8,39 @@ def load_data
   students = load_students
   teachers = load_teachers
   books = load_books(students, teachers)
-  
-  return [books, students, teachers]
+
+  [books, students, teachers]
 end
 
 def load_books(students, teachers)
   books = []
   people = students + teachers
 
-  unless File.exist?('./data/books.json')
-    return books
-  end
+  return books unless File.exist?('./data/books.json')
 
-  booksData = JSON.parse(File.read('./data/books.json'))
+  books_data = JSON.parse(File.read('./data/books.json'))
 
-  unless booksData.empty?
-    booksData.each do |book|
-      newBook = Book.new(book["title"], book["author"])
-      create_rentals(newBook, book["rentals"], people)
-      books.push(newBook)
+  unless books_data.empty?
+    books_data.each do |book|
+      new_book = Book.new(book['title'], book['author'])
+      create_rentals(new_book, book['rentals'], people)
+      books.push(new_book)
     end
   end
 
-  return books
+  books
 end
 
 def create_rentals(book, rentals, people)
-  unless rentals.empty?
-    rentals.each do |rental|
-      people.each do |person|
-        if rental["person_id"] == person.id
-          rental = Rental.new(rental["date"], book, person)
-          book.add_rental(rental)
-          person.add_rental(rental)
-        end
-      end
+  return if rentals.empty?
+
+  rentals.each do |rental|
+    people.each do |person|
+      next unless rental['person_id'] == person.id
+
+      rental = Rental.new(rental['date'], book, person)
+      book.add_rental(rental)
+      person.add_rental(rental)
     end
   end
 end
@@ -50,35 +48,33 @@ end
 def load_teachers
   teachers = []
 
-  unless File.exist?('./data/teachers.json')
-    return teachers
-  end
+  return teachers unless File.exist?('./data/teachers.json')
 
-  teachersData = JSON.parse(File.read('./data/teachers.json'))
+  teachers_data = JSON.parse(File.read('./data/teachers.json'))
 
-  unless teachersData.empty?
-    teachersData.each do |teacher|
-      teachers.push(Teacher.new(teacher["age"], teacher["specialization"], teacher["name"], teacher["id"], parent_permission: teacher["parent_permission"]))
+  unless teachers_data.empty?
+    teachers_data.each do |teacher|
+      teachers.push(Teacher.new(teacher['age'], teacher['specialization'], teacher['name'], teacher['id'],
+                                parent_permission: teacher['parent_permission']))
     end
   end
 
-  return teachers
+  teachers
 end
 
 def load_students
   students = []
 
-  unless File.exist?('./data/students.json')
-    return students
-  end
+  return students unless File.exist?('./data/students.json')
 
-  studentsData = JSON.parse(File.read('./data/students.json'))
+  students_data = JSON.parse(File.read('./data/students.json'))
 
-  unless studentsData.empty?
-    studentsData.each do |student|
-      students.push(Student.new(student["age"], student["name"], student["classroom"], student["id"], parent_permission: student["parent_permission"]))
+  unless students_data.empty?
+    students_data.each do |student|
+      students.push(Student.new(student['age'], student['name'], student['classroom'], student['id'],
+                                parent_permission: student['parent_permission']))
     end
   end
 
-  return students
+  students
 end

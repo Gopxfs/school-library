@@ -1,7 +1,5 @@
 def save_data(books, students, teachers)
-  unless File.exists?('./data')
-    Dir.mkdir('data')
-  end
+  Dir.mkdir('data') unless File.exist?('./data')
 
   save_books(books)
   save_students(students)
@@ -9,62 +7,60 @@ def save_data(books, students, teachers)
 end
 
 def save_books(books)
-  booksData = []
+  books_data = []
 
   books.each do |book|
     rentals = []
     unless book.rentals.empty?
       book.rentals.each do |rental|
-        rentals.push({date: rental.date, person_id: rental.person.id})
+        rentals.push({ date: rental.date, person_id: rental.person.id })
       end
     end
 
-    booksData.push({
-      title: book.title,
-      author: book.author,
-      rentals: rentals
-    })
-    end
+    books_data.push({
+                      title: book.title,
+                      author: book.author,
+                      rentals: rentals
+                    })
+  end
 
-    update_file("books", booksData)
+  update_file('books', books_data)
 end
 
 def save_students(students)
-  studentsData = []
+  students_data = []
 
   students.each do |student|
-    studentsData.push({
-      name: student.name,
-      age: student.age,
-      classroom: student.classroom,
-      parent_permission: student.parent_permission,
-      id: student.id
-    })
-    end
+    students_data.push({
+                         name: student.name,
+                         age: student.age,
+                         classroom: student.classroom,
+                         parent_permission: student.parent_permission,
+                         id: student.id
+                       })
+  end
 
-    update_file("students", studentsData)
+  update_file('students', students_data)
 end
 
 def save_teachers(teachers)
-  teachersData = []
+  teachers_data = []
 
   teachers.each do |teacher|
-    teachersData.push({      
-      name: teacher.name,
-      age: teacher.age,
-      specialization: teacher.specialization,
-      parent_permission: teacher.parent_permission,
-      id: teacher.id
-    })
-    end
+    teachers_data.push({
+                         name: teacher.name,
+                         age: teacher.age,
+                         specialization: teacher.specialization,
+                         parent_permission: teacher.parent_permission,
+                         id: teacher.id
+                       })
+  end
 
-    update_file("teachers", teachersData)
+  update_file('teachers', teachers_data)
 end
 
 def update_file(name, object)
   file = "./data/#{name}.json"
-  unless File.exists?(file)
-    File.new(file, "w+")
-  end
+  File.new(file, 'w+') unless File.exist?(file)
   File.write(file, object.to_json)
 end
