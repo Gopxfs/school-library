@@ -1,4 +1,8 @@
 def save_data(books, students, teachers)
+  unless File.exists?('./data')
+    Dir.mkdir('data')
+  end
+
   save_books(books)
   save_students(students)
   save_teachers(teachers)
