@@ -11,7 +11,7 @@ def save_books(books)
     rentals = []
     unless book.rentals.empty?
       book.rentals.each do |rental|
-        rentals.push {date: rental.date, person_id: rental.person.id}
+        rentals.push({date: rental.date, person_id: rental.person.id})
       end
     end
 
