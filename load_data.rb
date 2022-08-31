@@ -38,9 +38,9 @@ def create_rentals(book, rentals, people)
     people.each do |person|
       next unless rental['person_id'] == person.id
 
-      rental = Rental.new(rental['date'], book, person)
-      book.add_rental(rental)
-      person.add_rental(rental)
+      new_rental = Rental.new(rental['date'], book, person)
+      book.add_rental(new_rental)
+      person.add_rental(new_rental)
     end
   end
 end
